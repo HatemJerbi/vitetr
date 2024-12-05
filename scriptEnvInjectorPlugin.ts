@@ -1,6 +1,9 @@
 import { PluginOption } from "vite";
 
-export const scriptEnvInjector = (): PluginOption => {
+export const scriptEnvInjector = (
+  jsonConfigFile: string,
+  basePath: string
+): PluginOption => {
   return {
     name: "vite-plugin-script-env-injector", // Name of the plugin
     apply: "build",
@@ -27,11 +30,17 @@ export const scriptEnvInjector = (): PluginOption => {
       return htmll.replace(
         "<!-- ${scriptToInject} -->",
         `\
-  <script type="module" crossorigin>
-        import("/vitetr/runtime-env.js").then(()=>{
-          import("/vitetr/${jsAsset}");
-        });  
-      </script>`
+<script type="module" crossorigin>
+    fetch("${basePath}/${jsonConfigFile}", { cache: "no-cache" })
+    .then((resp) => {
+        return resp.json();
+    })
+    .then((data) => {
+        window.env = {};
+        window.env={...data};
+        import("${basePath}/${jsAsset}");
+    });
+    </script>`
       );
     },
   };
