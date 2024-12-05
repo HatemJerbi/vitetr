@@ -28,7 +28,7 @@ export const scriptEnvInjector = (): PluginOption => {
         "<!-- ${scriptToInject} -->",
         `\
   <script type="module" crossorigin>
-        import("/runtime-env.js").then(()=>{
+        import("/vitetr/runtime-env.js").then(()=>{
           import("/${jsAsset}");
         });  
       </script>`
