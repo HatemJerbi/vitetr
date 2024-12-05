@@ -29,7 +29,7 @@ export const scriptEnvInjector = (): PluginOption => {
         `\
   <script type="module" crossorigin>
         import("/vitetr/runtime-env.js").then(()=>{
-          import("/${jsAsset}");
+          import("/vitetr/${jsAsset}");
         });  
       </script>`
       );
