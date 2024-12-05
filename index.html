@@ -5,11 +5,17 @@
     <link rel="icon" type="image/svg+xml" href="/vitetr/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React + TS</title>
-      <script type="module" crossorigin>
-        import("/vitetr/runtime-env.js").then(()=>{
-          import("/vitetr/assets/index-C7p7s8Kz.js");
-        });  
-      </script>
+    <script type="module" crossorigin>
+    fetch("/vitetr/config/app-config.json", { cache: "no-cache" })
+    .then((resp) => {
+        return resp.json();
+    })
+    .then((data) => {
+        window.env = {};
+        window.env={...data};
+        import("/vitetr/assets/index-C7p7s8Kz.js");
+    });
+    </script>
     <link rel="stylesheet" crossorigin href="/vitetr/assets/index-n_ryQ3BS.css">
   </head>
   <body>
