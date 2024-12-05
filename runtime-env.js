@@ -1,5 +1,5 @@
 (function () {
-  fetch("/config/app-config.json", { cache: "no-cache" })
+  fetch("/vitetr/config/app-config.json", { cache: "no-cache" })
     .then((resp) => {
       return resp.json();
     })
