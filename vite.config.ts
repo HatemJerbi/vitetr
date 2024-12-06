@@ -5,9 +5,9 @@ import { scriptEnvInjector } from "./scriptEnvInjectorPlugin";
 const basePath = "/vitetr";
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), scriptEnvInjector("config/app-config.json",basePath)],
+  plugins: [react(), scriptEnvInjector("config/app-config.json", basePath)],
   base: basePath,
   server: {
-    port: 4173
-  }
+    port: 4173,
+  },
 });
